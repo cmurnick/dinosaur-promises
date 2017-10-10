@@ -2,9 +2,15 @@
 
 var dom = require('./dom');
 
+var dinosaurs = [];
+
 var initializer = function(){
 	dom({name: "T-rex"});
 };
 
 
-module.exports = {initializer};
+var getDinosaurs = function() {
+	return dinosaurs;
+};
+
+module.exports = {initializer:initializer, getDinosaurs:getDinosaurs};
