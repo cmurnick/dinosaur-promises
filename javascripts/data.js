@@ -61,33 +61,61 @@ var thirdDinosaurJSON = function() {
 	});	
 };
 
+//PROMISE WORKS - promise pyramid of DOOM
+// var dinoGetter = function() {
+// 	firstDinosaurJSON().then(function(results) {
+// 		results.forEach(function(dino){
+// 			dinosaurs.push(dino);
+// 		});
+		
+// 		secondDinosaurJSON().then(function(results2){
+// 			results2.forEach(function(dino) {
+// 				dinosaurs.push(dino);
+// 			});
+// 		thirdDinosaurJSON().then(function(results3) {
+// 			results3.forEach(function(dino) {
+// 				dinosaurs.push(dino);
+// 			});
+			
+// 			});
+// 			console.log("Idinosaurfrom dino1", dinosaurs);
+// 		});
+
+
+
+// 	}).catch(function(error) {
+// 		console.log("error from dino1", error);
+// 	});
+// };
+
 var dinoGetter = function() {
 	firstDinosaurJSON().then(function(results) {
 		results.forEach(function(dino){
 			dinosaurs.push(dino);
 		});
 		
-		secondDinosaurJSON().then(function(results2){
-			results2.forEach(function(dino) {
-				dinosaurs.push(dino);
-			});
-		thirdDinosaurJSON().then(function(results3) {
-			results3.forEach(function(dino) {
-				dinosaurs.push(dino);
-			});
-			
-			});
-			console.log("Idinosaurfrom dino1", dinosaurs);
-		});
 
 
-
-	}).catch(function(error) {
-		
+		return secondDinosaurJSON();
+	}).then(function(results2) {
+		results2.forEach(function(dino){
+			dinosaurs.push(dino);
 	});
-	console.log("error from dino1", error);
+		return thirdDinosaurJSON();
+	}).then(function(results3) {
+		results3.forEach(function(dino){
+			dinosaurs.push(dino);
+	});
+		console.log("dinosaurs", dinosaurs);
+		makeDinos();
+});
 };
 
+var makeDinos = function() {
+	dinosaurs.forEach(function(dino) {
+		dom(dino);
+	});
+};
 
 
 var initializer = function(){
